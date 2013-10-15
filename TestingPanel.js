@@ -8,6 +8,10 @@ Ext.define("Ext.ux.TestingPanel", {
 
 	constructor : function(config) {
 		var me = this;
+		
+		/** @cfg {boolean} Определяет будет ли исползоваться значение 
+		 * окружения по умолчанию */
+		me.isDefaultJasmineEnv = config.isDefaultJasmineEnv || false;
 		me.callParent(arguments);
 	}, 
 	
@@ -20,7 +24,11 @@ Ext.define("Ext.ux.TestingPanel", {
 	onRender : function () {
 		var me = this;
 		me.callParent(arguments);
-		me.jasmineEnv = jasmine.getNewEnv();
+		if (me.isDefaultJasmineEnv) {
+			me.jasmineEnv = jasmine.getEnv();
+		} else {
+			me.jasmineEnv = jasmine.getNewEnv();
+		}
 		
 		me.jasmineEnv.updateInterval = 250;
 		outputPanel.add(Ext.create("Ext.Component", {html : jasmineEnv.versionString()}));

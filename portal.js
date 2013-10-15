@@ -13,8 +13,11 @@
 Ext.define('Ext.app.Portal', {
 
     extend: 'Ext.container.Viewport',
-    //requires: [ 'Ext.diag.layout.ContextItem', 'Ext.diag.layout.Context' ],
-    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Ext.app.GridPortlet', 'Ext.app.ChartPortlet'],
+    uses: [ 'Ext.app.PortalPanel', 
+			'Ext.app.PortalColumn', 
+			'Ext.app.GridPortlet', 
+			'Ext.app.ChartPortlet'
+		  ],
 
 	constructor : function(config) {
 		var me = this;
@@ -37,42 +40,12 @@ Ext.define('Ext.app.Portal', {
     },
 
     initComponent: function() {
-		var me =this;
-        var content = '<div class="portlet-content">'+Ext.example.shortBogusMarkup+'</div>';
-
+		var me = this;
+        var content = '<div class="portlet-content">' +
+			Ext.example.shortBogusMarkup +
+		'</div>';
 		var portalApp = me.config.portalApp;
-		var testPanel = Ext.create("Ext.panel.Panel", {
-			title : "TestPanel", 
-			closable : true
-		});
-
-		var testOutputPanel = Ext.create("Ext.panel.Panel", {
-			title : "TestOutputPanel", 
-			closable : true, 
-			height : 500, 
-			autoScroll: true
-		});
-
-		var testOutputPanel1 = Ext.create("Ext.panel.Panel", {
-			title : "TestOutputPanel1", 
-			closable : true, 
-			height : 500, 
-			autoScroll: true
-		});
-
-		var testOutputPanel2 = Ext.create("Ext.panel.Panel", {
-			title : "TestOutputPanel2", 
-			closable : true, 
-			height : 500, 
-			autoScroll: true
-		});
 		
-		console.log("portal_app in init component = ", portalApp);
-		portalApp.testPanel = testPanel;
-		portalApp.testOutputPanel = testOutputPanel;
-		portalApp.testOutputPanel1 = testOutputPanel1;
-		portalApp.testOutputPanel2 = testOutputPanel2;
-
         Ext.apply(this, {
             id: 'app-viewport',
             layout: {
@@ -104,14 +77,14 @@ Ext.define('Ext.app.Portal', {
                         animate: true
                     },
                     items: [{
-                        html: content,
+                        //html: content,
                         title:'Navigation',
                         autoScroll: true,
                         border: false,
                         iconCls: 'nav'
                     },{
                         title:'Settings',
-                        html: content,
+                        //html: content,
                         border: false,
                         autoScroll: true,
                         iconCls: 'settings'
