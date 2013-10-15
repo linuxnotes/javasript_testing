@@ -133,7 +133,8 @@
 		return env;
 	};
 
-jasmine.getNewEnv = function() {
+
+    jasmine.getNewEnv = function() {
 		var env = jasmine.currentEnv_ =  new jasmine.Env();
 		return env;
 	};

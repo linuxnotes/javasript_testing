@@ -36,7 +36,7 @@ Ext.define('Ext.app.Portal', {
         }];
     },
 
-    initComponent: function(){
+    initComponent: function() {
 		var me =this;
         var content = '<div class="portlet-content">'+Ext.example.shortBogusMarkup+'</div>';
 
