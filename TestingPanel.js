@@ -1,6 +1,7 @@
 /** @class Testing panel Панель предназначенная для вывода
- * результатов тестов.
- */
+ * результатов тестов. */
+
+Ext.Loader.loadScript("tests.js");
 
 Ext.define("Ext.ux.TestingPanel", {
 	extend : "Ext.panel.Panel", 
@@ -8,7 +9,9 @@ Ext.define("Ext.ux.TestingPanel", {
 
 	constructor : function(config) {
 		var me = this;
-		
+		config.autoScroll = true;
+		config.height  = 1000;
+
 		/** @cfg {boolean} Определяет будет ли исползоваться значение 
 		 * окружения по умолчанию */
 		me.isDefaultJasmineEnv = config.isDefaultJasmineEnv || false;
@@ -24,6 +27,12 @@ Ext.define("Ext.ux.TestingPanel", {
 	onRender : function () {
 		var me = this;
 		me.callParent(arguments);
+		me.envPrepare();
+	},
+
+	envPrepare : function() {
+		var me = this;
+
 		if (me.isDefaultJasmineEnv) {
 			me.jasmineEnv = jasmine.getEnv();
 		} else {
@@ -31,19 +40,24 @@ Ext.define("Ext.ux.TestingPanel", {
 		}
 		
 		me.jasmineEnv.updateInterval = 250;
-		outputPanel.add(Ext.create("Ext.Component", {html : jasmineEnv.versionString()}));
+		// me.add(Ext.create("Ext.Component", {html : me.jasmineEnv.versionString()}));
 		var el = Ext.create("Ext.Component", { contentEl : document.createElement("div")});
+		console.log("el =" , el );
 		me.add(el);
-		el = el.getEl();
+		console.log("el.el =", el.el);
+		console.log("el.getEl() = ", el.getEl());
+		el = el.contentEl; // el = el.getEl();
+		console.log("el = ",  el );
 		el.body = el;
 		el.location = document.location;
 		var htmlReporter = new jasmine.HtmlReporter(el);
 		me.jasmineEnv.addReporter(htmlReporter);
-	}, 
+	},
 
 	execute : function () {
 		var me = this;
 		if (me.jasmineEnv) {
+			console.log("before execute");
 			me.jasmineEnv.execute();
 		}
 	}

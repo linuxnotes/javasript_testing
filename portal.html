@@ -29,6 +29,7 @@
 	  Ext.Loader.setPath('Ext', '../src');
       Ext.Loader.setPath('Ext.app', 'classes');
 	  Ext.Loader.setPath('Ext.examples', '../examples');
+	  Ext.Loader.setPath('Ext.ux', '.');
         
 	  Ext.require([
 		    'Ext.example.shortBogusMarkup',
@@ -43,7 +44,8 @@
             'Ext.app.Portlet',
             'Ext.app.PortalDropZone',
             'Ext.app.GridPortlet',
-            'Ext.app.ChartPortlet'
+            'Ext.app.ChartPortlet',
+	        'Ext.ux.TestingPanel'
       ]);
 
       Ext.onReady(function(){

@@ -46,6 +46,12 @@ Ext.define('Ext.app.Portal', {
 		'</div>';
 		var portalApp = me.config.portalApp;
 		
+		var testPanel = Ext.create("Ext.ux.TestingPanel", {
+			isDefaultJasmineEnv : false
+		});
+		
+		portalApp.testPanel = testPanel;
+		
         Ext.apply(this, {
             id: 'app-viewport',
             layout: {
@@ -96,15 +102,8 @@ Ext.define('Ext.app.Portal', {
                     items: [{
                         id: 'col-1',
                         items: [
-							portalApp.testOutputPanel1, 
-							portalApp.testOutputPanel2
+							portalApp.testPanel
 						]
-                    },{
-                        id: 'col-2',
-                        items: [portalApp.testPanel]
-                    },{
-                        id: 'col-3',
-                        items: [portalApp.testOutputPanel]
                     }]
                 }]
             }]
